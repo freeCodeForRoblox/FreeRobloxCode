@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RobloxCode</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #121212;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #1c1c1c;
+      padding: 10px 20px;
+      flex-wrap: wrap;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .nav-link {
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    .logo {
+      height: 35px;
+    }
+
+    .promo {
+      background-color: #1e1e1e;
+      border: 2px solid #2e8b57;
+      padding: 20px;
+      margin: 40px auto;
+      max-width: 500px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 0 15px #2e8b57;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeIn 1s forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .promo h2 {
+      color: #00ff88;
+    }
+
+    .code {
+      font-size: 20px;
+      color: #fff;
+      background-color: #2a2a2a;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 6px;
+      letter-spacing: 2px;
+    }
+
+    footer {
+      background-color: #1c1c1c;
+      color: #aaa;
+      text-align: center;
+      padding: 20px;
+      font-size: 12px;
+      margin-top: auto;
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+    }
+
+    @media (max-width: 768px) {
+      .header-left {
+        flex-direction: row;
+      }
+
+      .logo {
+        height: 30px;
+      }
+
+      .promo {
+        height: 200px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  </style>
+  <script defer>
+    function generateCode(length) {
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+      let code = '';
+      for (let i = 0; i < length; i++) {
+        code += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      return code;
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const codeElement = document.getElementById('robux-code');
+      if (!codeElement) return;
+
+      let savedCode = localStorage.getItem('robuxCode');
+      if (!savedCode) {
+        savedCode = generateCode(12);
+        localStorage.setItem('robuxCode', savedCode);
+      }
+
+      codeElement.textContent = savedCode;
+    });
+  </script>
+</head>
+<body>
+
+  <header>
+    <div class="header-left">
+      <a href="https://www.roblox.com/signup" class="nav-link">Charts</a>
+      <a href="https://www.roblox.com/signup" class="nav-link">Marketplace</a>
+      <img src="https://cdn.freelogovectors.net/wp-content/uploads/2021/12/robloxlogo-freelogovectors.net_.png" alt="Logo" class="logo">
+      <a href="https://create.roblox.com/" class="nav-link">Create</a>
+      <a href="https://www.roblox.com/signup" class="nav-link">Robux</a>
+    </div>
+  </header>
+
+  <div class="promo">
+    <h2>This is your code for 100 Robux:</h2>
+    <div class="code" id="robux-code"></div>
+  </div>
+
+  <footer>
+    ©2025 Roblox Corporation. Roblox, the Roblox logo and Powering Imagination are among our registered and unregistered trademarks in the U.S. and other countries. (偽造的)
+  </footer>
+
+</body>
+</html>
